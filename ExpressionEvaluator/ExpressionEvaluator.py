@@ -1,10 +1,6 @@
 
 #config
-eps = 1.0 #ty stack overflow
-while eps + 1 > 1:
-    eps /= 2
-eps *= 2
-
+ROUND_NUM = 0.00000001
 MAX_NUMBER = 10**300
 
 #initialized anything it will need later
@@ -305,7 +301,7 @@ def atttempt_round(float_value):
   if isinstance(float_value,complex):
     return float_value
   rounded_answer = int(round(float_value))
-  if abs(float_value-rounded_answer) <= eps:
+  if abs(float_value-rounded_answer) <= ROUND_NUM:
     return rounded_answer
   return float_value
 

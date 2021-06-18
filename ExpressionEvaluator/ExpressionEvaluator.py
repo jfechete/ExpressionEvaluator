@@ -163,7 +163,9 @@ def evaluate(table):
     counter = 0
     while counter < len(expression_list):
         if expression_list[counter] == "-":
-            if counter == 0:
+            if counter >= len(expression_list) - 1:
+                raise EquationSyntaxError("You have nothing after your negative sign")
+            elif counter == 0:
                 expression_list[counter] = -1*expression_list[counter+1]
                 del expression_list[counter+1]
             elif not isinstance(expression_list[counter-1], int) and not isinstance(expression_list[counter-1], float) and not isinstance(expression_list[counter-1], complex):

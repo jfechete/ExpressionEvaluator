@@ -206,11 +206,11 @@ def evaluate(table):
         if isinstance(value, str):
             if value in must_have_before:
                 before = expression_list[counter-1]
-                if not (isinstance(before,int) or isinstance(before,float) or isinstance(before,complex)):
+                if not (isinstance(before,int) or isinstance(before,float) or isinstance(before,complex)) and ((not isinstance(before,str)) or before in must_have_after):
                      raise(EquationSyntaxError("There is a non-number character behind your {} sign".format(value)))
             if value in must_have_after:
                 after = expression_list[counter+1]
-                if not (isinstance(after,int) or isinstance(after,float) or isinstance(after,complex)):
+                if (not (isinstance(after,int) or isinstance(after,float) or isinstance(after,complex))) and ((not isinstance(after,str)) or after in must_have_before):
                      raise(EquationSyntaxError("There is a non-number character after your {} sign".format(value)))
     
         counter += 1

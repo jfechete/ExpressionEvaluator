@@ -5,8 +5,6 @@ MAX_NUMBER = 10**300
 
 #initialized anything it will need later
 import math
-class ZeroDivision(Exception):
-    pass
 class EquationSyntaxError(Exception):
     def __init__ (self, description):
         self.description = description
@@ -262,8 +260,6 @@ def evaluate(table):
             del expression_list[counter + 1]
             del expression_list[counter - 1]
         elif expression_list[counter] == "/":
-            if expression_list[counter+1] == 0:
-                raise(ZeroDivision)
             expression_list[counter] = expression_list[counter-1] / expression_list[counter+1]
             if abs(expression_list[counter]) > MAX_NUMBER:
                 raise(TooBigNumber("dividing numbers"))
@@ -319,5 +315,9 @@ if __name__ == "__main__":
         expression = input("Please insert your expression: ")
         try:
             print("The answer is: {}".format(evaluate_string(expression)))
-        except (ZeroDivision, EquationSyntaxError,UnknownCharacter, TooBigNumber,OverflowError) as e:
-            print("Error solving your equation: {}".format(str(e)))
+        except (ZeroDivisionError, EquationSyntaxError,UnknownCharacter, TooBigNumber,OverflowError) as e:
+            if isinstance(e,ZeroDivisionError):
+                msg = "Attempt to divide by zero"
+            else:
+                msg = str(e)
+            print("Error solving your equation: {}".format(msg))

@@ -11,4 +11,4 @@ def evaluate_string(string):
         return evaluate(formatted_equation)
 ```
 
-The possible exceptions it should be able to raise are: ExpressionEvaluator.ZeroDivision, ExpressionEvaluator.EquationSyntaxError, ExpressionEvaluator.UnknownCharacter, ExpressionEvaluator.TooBigNumber, and OverflowError
+The possible exceptions it should be able to raise are: ExpressionEvaluator.EquationSyntaxError, ExpressionEvaluator.UnknownCharacter, ExpressionEvaluator.TooBigNumber, ZeroDivisionError, and OverflowError
